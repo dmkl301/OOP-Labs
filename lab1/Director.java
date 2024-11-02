@@ -20,6 +20,11 @@ public class Director {
         birthdate.printInfo();
     }
 
+    @Override
+    public String toString() {
+        return "name=%s, surname=%s, birthdate=%s".formatted(name, surname, birthdate.toString());
+    }
+
     public String getName() {
         return name;
     }

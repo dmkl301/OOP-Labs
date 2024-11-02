@@ -7,7 +7,7 @@ public class Movie {
     private String title;
     private MovieGenre genre;
     private Director director;
-    private List<Screening> screeningList = new ArrayList<>();
+    private List<Screening> screening = new ArrayList<>();
 
     public Movie() {
     }
@@ -22,26 +22,36 @@ public class Movie {
         System.out.printf("Movied info: title %s, genre %s%n", title, genre);
         System.out.println("Director info: ");
         director.printInfo();
-        for (Screening screening : screeningList) {
+        for (Screening screening : screening) {
             screening.printInfo();
         }
     }
 
     public void printShortInfo() {
         double sum = 0;
-        for (Screening screening : screeningList) {
+        for (Screening screening : screening) {
             sum += screening.getProfit();
         }
-        double average = sum / screeningList.size();
+        double average = sum / screening.size();
         System.out.printf("Short info: title %s, director %s, profitAvg %s%n", title, director.getName(), average);
     }
 
+    @Override
+    public String toString() {
+        StringBuffer sb = new StringBuffer();
+        for (Screening screening : screening) {
+            sb.append(screening.toString()).append("\n");
+        }
+
+        return "title=%s, genre=[%s], director=[%s], %nscreening=[%n%s]".formatted(title, genre, director.toString(), sb.toString());
+    }
+
     public void addScreening(Screening screening) {
-        screeningList.add(screening);
+        this.screening.add(screening);
     }
 
     public List<Screening> getScreening() {
-        return screeningList;
+        return screening;
     }
 
     public String getTitle() {
@@ -68,11 +78,4 @@ public class Movie {
         this.director = director;
     }
 
-    public List<Screening> getScreeningList() {
-        return screeningList;
-    }
-
-    public void setScreeningList(List<Screening> screeningList) {
-        this.screeningList = screeningList;
-    }
 }

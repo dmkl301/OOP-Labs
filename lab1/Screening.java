@@ -20,6 +20,11 @@ public class Screening {
         screeningDate.printInfo();
     }
 
+    @Override
+    public String toString() {
+        return "screeningName=%s, profit=%s, screeningDate=%s".formatted(screeningName, profit, screeningDate.toString());
+    }
+
     public String getScreeningName() {
         return screeningName;
     }

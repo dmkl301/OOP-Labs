@@ -17,6 +17,11 @@ public class Date {
         this.year = year;
     }
 
+    @Override
+    public String toString() {
+        return day + "/" + month + "/" + year;
+    }
+
     public void printInfo() {
         System.out.printf(" day: %s, month: %s, year: %s%n", day, month, year);
     }
